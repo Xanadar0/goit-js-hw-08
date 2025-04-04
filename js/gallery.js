@@ -88,25 +88,21 @@ imagesGalleryEl.innerHTML = imageCardsTemplate;
  
 
 const onImageCardClick = event => {
-        event.preventDefault();
-    if (event.target === event.currentTarget) {
-        return;
-    }
+  event.preventDefault();
 
-    const imageCard = event.target.closest('.gallery-image');
-    if (!imageCard) return;  
-    const imageId = imageCard.dataset.source;
-    const imageInfo = images.find(image => image.original === imageId);
-    if (!imageInfo) return;
-    const modalInstance = basicLightbox.create(`<img
-            class="modal-image"
-            src="${imageInfo.original}"
-            alt="${imageInfo.description}"
+  const image = event.target.closest('.gallery-image');
+  if (!image) return;
+
+  const modalInstance = basicLightbox.create(`
+    <img
+      class="modal-image"
+      src="${image.dataset.source}"
+      alt="${image.alt}"
     />
-    `);
+  `);
 
-    modalInstance.show();
-}
+  modalInstance.show();
+};
 
 
 imagesGalleryEl.addEventListener('click', onImageCardClick)
