@@ -90,8 +90,11 @@ imagesGalleryEl.innerHTML = imageCardsTemplate;
 const onImageCardClick = event => {
   event.preventDefault();
 
-  const image = event.target.closest('.gallery-image');
-  if (!image) return;
+  const image = event.target;
+
+    if (image.nodeName !== 'IMG') {
+    return;
+  }
 
   const modalInstance = basicLightbox.create(`
     <img
@@ -101,7 +104,7 @@ const onImageCardClick = event => {
     />
   `);
 
-  modalInstance.show();
+  modalInstance.show(); 
 };
 
 
